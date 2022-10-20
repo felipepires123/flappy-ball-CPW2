@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  user-select: none;
+}
+div{
+  background: url("/img/flappy-ball-set.png") 0% 239px;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+}
+header {
+  margin: 0 auto;
+  width: 431px;
+}
+h1 {
+  background: url("/img/flappy-ball-set.png") 0% 309px;
+  padding: 1.2rem 0;
+  margin: 0;
+}
+.score-container {
+  display: flex;
+  padding: 3px;
+  justify-content: space-between;
+  padding: 8px 6px;
+  background: url("/img/flappy-ball-set.png") 0% 220px;
+}
+tela{
+  margin: auto;
+}
