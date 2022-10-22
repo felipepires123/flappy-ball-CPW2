@@ -1,7 +1,11 @@
 const tela = document.getElementById('tela');
 const ctx = tela.getContext('2d');
 const img = new Image();
+const fundo = new Audio();
+const ponto = new Audio();
 img.src = "/img/flappy-ball-set.png";
+fundo.src = "/sound/Som de torcida som de estadio efeito sonoro - Cheering sound stadium sound sound effect.mp3"
+ponto.src = "/sound/PONTO.mp3"
 
 //dificult nivel
 function facil(){
@@ -76,6 +80,8 @@ const render = () => {
       // give 1 point & create new trave
       if(trave[0] <= -traveWidth){
         currentScore++;
+        ponto.play();
+
         // check if it's the best scoreend
         bestScore = Math.max(bestScore, currentScore);
         
@@ -119,6 +125,7 @@ const render = () => {
 // launch setup
 setup();
 img.onload = render;
+fundo.play();
 
 // start game
 document.addEventListener('click', () => gamePlaying = true);
