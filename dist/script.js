@@ -7,7 +7,7 @@ img.src = "/img/flappy-ball-set.png";
 fundo.src = "/sound/Som de torcida som de estadio efeito sonoro - Cheering sound stadium sound sound effect.mp3"
 ponto.src = "/sound/PONTO.mp3"
 
-//dificult nivel
+//nivel de dificuldade
 function facil(){
   gravity = .4;
   speed = 4.5;
@@ -24,7 +24,7 @@ function dificil(){
   jump = -8.5;
 }
 
-// general settings
+// ajustes gerais
 let gamePlaying = false;
 let gravity = .5;
 let speed = 6.2;
@@ -39,7 +39,7 @@ let index = 0,
     currentScore, 
     trave;
 
-// trave settings
+// opções das traves
 const traveWidth = 78;
 const traveGap = 270;
 const traveLoc = () => (Math.random() * ((tela.height - (traveGap + traveWidth)) - traveWidth)) + traveWidth;
@@ -48,18 +48,18 @@ const setup = () => {
   currentScore = 0;
   flight = jump;
 
-  // set initial flyHeight (middle of screen - size of the bird)
+  // set inicial do voo (no meio da tela - a bola)
   flyHeight = (tela.height / 2) - (size[1] / 2);
 
-  // setup first 3 traves
+  // setup das 3 primeiras traves
   traves = Array(3).fill().map((a, i) => [tela.width + (i * (traveGap + traveWidth)), traveLoc()]);
 }
 
 const render = () => {
-  // make the trave and bird moving 
+  // fazer as traves enquanto 
   index++;
 
-  // ctx.clearRect(0, 0, tela.width, tela.height);
+  // ctx.clearRect(0, 0, tela.width, tela.);
 
   // background first part 
   ctx.drawImage(img, 0, 0, tela.width, tela.height, -((index * (speed / 2)) % tela.width) + tela.width, 0, tela.width, tela.height);
@@ -69,28 +69,28 @@ const render = () => {
   // trave display
   if (gamePlaying){
     traves.map(trave => {
-      // trave moving
+      // movimento da trave
       trave[0] -= speed;
 
-      // top trave
+      // topo da trave
       ctx.drawImage(img, 432, 588 - trave[1], traveWidth, trave[1], trave[0], 0, traveWidth, trave[1]);
-      // bottom trave
+      // baixo da trave
       ctx.drawImage(img, 432 + traveWidth, 108, traveWidth, tela.height - trave[1] + traveGap, trave[0], trave[1] + traveGap, traveWidth, tela.height - trave[1] + traveGap);
 
-      // give 1 point & create new trave
+      // Se tiver um ponto cria uma trave
       if(trave[0] <= -traveWidth){
         currentScore++;
         ponto.play();
 
-        // check if it's the best scoreend
+        // Checar se é o maior score
         bestScore = Math.max(bestScore, currentScore);
         
-        // remove & create new trave
+        // Remover e criar nova trave
         traves = [...traves.slice(1), [traves[traves.length-1][0] + traveGap + traveWidth, traveLoc()]];
         console.log(traves);
       }
     
-      // if hit the trave, end
+      // Se bater na trave perde
       if ([
         trave[0] <= cTenth + size[0], 
         trave[0] + traveWidth >= cTenth, 
@@ -101,7 +101,7 @@ const render = () => {
       }
     })
   }
-  // draw bird
+  // desenhar a bola
   if (gamePlaying) {
     ctx.drawImage(img, 438, Math.floor((index % 9) / 3) * size[1], ...size, cTenth, flyHeight, ...size);
     flight += gravity;
@@ -109,7 +109,7 @@ const render = () => {
   } else {
     ctx.drawImage(img, 438, Math.floor((index % 9) / 3) * size[1], ...size, ((tela.width / 2) - size[0] / 2), flyHeight, ...size);
     flyHeight = (tela.height / 2) - (size[1] / 2);
-      // text accueil
+      // Texto de explicação
     ctx.fillText(`Melhor pontuação: ${bestScore}`, 40, 245);
     ctx.fillText('Clique para dar inicio', 15, 535);
     ctx.font = "bold 30px courier";
@@ -118,15 +118,15 @@ const render = () => {
   document.getElementById('bestScore').innerHTML = `Best : ${bestScore}`;
   document.getElementById('currentScore').innerHTML = `Current : ${currentScore}`;
 
-  // tell the browser to perform anim
+  // diz ao navegador para executar animação da bola
   window.requestAnimationFrame(render);
 }
 
-// launch setup
+// configuração de inicio
 setup();
 img.onload = render;
-fundo.play();
+fundo.play(Infinity);
 
-// start game
+// começa o jogo
 document.addEventListener('click', () => gamePlaying = true);
 window.onclick = () => flight = jump;
