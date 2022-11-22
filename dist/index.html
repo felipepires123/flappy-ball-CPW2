@@ -7,25 +7,35 @@
 
 </head>
 <body>
+
+  <div id="placar" onload="load()">
+    <div id="bestScore"></div>
+    <div id="currentScore"></div>
+      PLACAR
+    <ul>
+      
+    </ul>
+    
+  </div>
+  <div id="opcoes">
+    <h3>Dificuldade</h3>
+    <button onclick="facil()">FACIL</button>
+    <button onclick="medio()">MÉDIO</button>
+    <button onclick="dificil()">DIFICIL</button>
+    <button id="som" onclick="muteSom()">SOM: on</button>
+  </div>
 <!-- partial:index.partial.html -->
 <header>
   <audio src="/sound/PONTO.mp3"></audio>
   <h1>Flappy Ball</h1>
-  <div>
-    <button onclick="facil()">FACIL</button>
-    <button onclick="medio()">MÉDIO</button>
-    <button onclick="dificil()">DIFICIL</button>
-    <button onclick="muteMusic()">MUSICA: on</button>
-  </div>
-  <div class="score-container">
-    <div id="bestScore"></div>
-    <div id="currentScore"></div>
-  </div>
+  
+  
 </header>
 
-  <canvas id="tela" width="431" height="768"></canvas>
-<!-- partial -->
+  <canvas id="tela" width="432" height="550"></canvas>
   <script  src="./script.js"></script>
+
+
 
 </body>
 </html>

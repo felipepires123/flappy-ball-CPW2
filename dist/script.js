@@ -1,7 +1,7 @@
 const tela = document.getElementById('tela');
 const ctx = tela.getContext('2d');
 const img = new Image();
-const fundo = new Audio();
+var fundo = new Audio();
 const ponto = new Audio();
 img.src = "/img/flappy-ball-set.png";
 fundo.src = "/sound/Som de torcida som de estadio efeito sonoro - Cheering sound stadium sound sound effect.mp3"
@@ -24,6 +24,22 @@ function dificil(){
   jump = -8.5;
 }
 
+function muteSom(){
+  let buttomtxt = document.getElementById("som");
+  
+  if (buttomtxt.textContent == "SOM: on"){
+    fundo.pause();
+    buttomtxt.innerText= "SOM: off";
+  }else{
+    fundo.play(Infinity);
+    buttomtxt.innerText = "SOM: on"
+  }
+  
+}
+
+function load() {
+
+}
 // ajustes gerais
 let gamePlaying = false;
 let gravity = .5;
@@ -62,9 +78,9 @@ const render = () => {
   // ctx.clearRect(0, 0, tela.width, tela.);
 
   // background first part 
-  ctx.drawImage(img, 0, 0, tela.width, tela.height, -((index * (speed / 2)) % tela.width) + tela.width, 0, tela.width, tela.height);
+  ctx.drawImage(img, 0, 150, tela.width, tela.height, -((index * (speed / 2)) % tela.width) + tela.width, 0, tela.width, tela.height);
   // background second part
-  ctx.drawImage(img, 0, 0, tela.width, tela.height, -(index * (speed / 2)) % tela.width, 0, tela.width, tela.height);
+  ctx.drawImage(img, 0, 150, tela.width, tela.height, -(index * (speed / 2)) % tela.width, 0, tela.width, tela.height);
   
   // trave display
   if (gamePlaying){
@@ -109,14 +125,13 @@ const render = () => {
   } else {
     ctx.drawImage(img, 438, Math.floor((index % 9) / 3) * size[1], ...size, ((tela.width / 2) - size[0] / 2), flyHeight, ...size);
     flyHeight = (tela.height / 2) - (size[1] / 2);
-      // Texto de explicação
-    ctx.fillText(`Melhor pontuação: ${bestScore}`, 40, 245);
-    ctx.fillText('Clique para dar inicio', 15, 535);
+      // Texto de explicação  
+    ctx.fillText('Clique para iniciar', 5, 100);
     ctx.font = "bold 30px courier";
   }
 
-  document.getElementById('bestScore').innerHTML = `Best : ${bestScore}`;
-  document.getElementById('currentScore').innerHTML = `Current : ${currentScore}`;
+  document.getElementById('bestScore').innerHTML = `Melhor: ${bestScore}`;
+  document.getElementById('currentScore').innerHTML = `Current: ${currentScore}`;
 
   // diz ao navegador para executar animação da bola
   window.requestAnimationFrame(render);
