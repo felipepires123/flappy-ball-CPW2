@@ -1,33 +1,66 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
-  margin: 0 auto;
+  padding: 10px;
   text-align: center;
   font-family: 'Press Start 2P', cursive;
   user-select: none;
-}
-div{
-  background: url("/img/flappy-ball-set.png") 0% 239px;
-  border: none;
-  padding: 0px;
-  margin: 0px;
+  background: url(/img/background.png);
+  background-size: 40%;
 }
 header {
   margin: 0 auto;
-  width: 431px;
+  height: 110px;
+  width: 432px;
 }
 h1 {
-  background: url("/img/flappy-ball-set.png") 0% 309px;
-  padding: 1.2rem 0;
-  margin: 0;
+  left: -1.5px;
+  font-size: 20pt;
+  padding: 20px 0px;
+  position: relative;
+  margin-top: -17px;
+  border: solid black 3px;
+  width: 432px;
+  border-start-start-radius: 20px;
+  border-start-end-radius: 20px;
+  background-color: cornsilk;
+  background-image: linear-gradient( to right, rgb(255, 255, 255),  rgb(190, 190, 190), rgb(255, 255, 255));
 }
-.score-container {
-  display: flex;
-  padding: 3px;
-  justify-content: space-between;
-  padding: 8px 6px;
-  background: url("/img/flappy-ball-set.png") 0% 220px;
+canvas{
+  margin-top: -43px;
+  margin-left: 23px;
+  margin-bottom: 0px;
+  border: solid black 3px;
+  box-shadow: rgba(0, 0, 0, 0.534) 5px 5px 5px;
+  border-end-start-radius: 20px;
+  border-end-end-radius: 20px;
 }
-tela{
-  margin: auto;
+div#opcoes{
+  float: right;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 200px;
+  padding: 20px;
+  border: solid black 3px;
+  border-radius: 15px;
+  color: white;
+}
+button{
+  color: white;
+  background-color: rgba(0, 0, 0, 0.39);
+  border-radius: 10px;
+  border: solid rgba(255, 255, 255, 0.342) 2px;
+  width: 95px;
+  height: 30px;
+  margin: 5px 0px;
+}
+
+div#placar{
+  bottom: 500px;
+  width: 180px;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 20px;
+  border: solid black 3px;
+  border-radius: 15px;
+  float: left;
+  color: white;
 }
