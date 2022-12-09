@@ -12,16 +12,19 @@ function facil(){
   gravity = .4;
   speed = 4.5;
   jump = -10.5;
+  traveGap = 300;
 }
 function medio(){
   gravity = .5;
   speed = 6.2;
   jump = -11.5;
+  traveGap = 238;
 }
 function dificil(){
   gravity = .6;
   speed = 8.3;
   jump = -8.5;
+  traveGap = 200;
 }
 
 function muteSom(){
@@ -37,9 +40,10 @@ function muteSom(){
   
 }
 
-function load() {
 
+function load() {
 }
+
 // ajustes gerais
 let gamePlaying = false;
 let gravity = .5;
@@ -48,16 +52,21 @@ const size = [36, 36];
 let jump = -11.5;
 const cTenth = (tela.width / 10);
 
+// Melhor pontuação em cada dificuldade
+let bestScoreF = localStorage.getItem('bestScoreF'),
+    bestScoreM = localStorage.getItem('bestScoreM'),
+    bestScoreD = localStorage.getItem('bestScoreD');
+
 let index = 0,
-    bestScore = 0, 
     flight, 
     flyHeight, 
     currentScore, 
     trave;
 
 // opções das traves
+
 const traveWidth = 78;
-const traveGap = 270;
+var traveGap = 238
 const traveLoc = () => (Math.random() * ((tela.height - (traveGap + traveWidth)) - traveWidth)) + traveWidth;
 
 const setup = () => {
@@ -72,17 +81,17 @@ const setup = () => {
 }
 
 const render = () => {
-  // fazer as traves enquanto 
+  // fazer as traves enquanto não bater 
   index++;
 
   // ctx.clearRect(0, 0, tela.width, tela.);
 
-  // background first part 
+  // peimeira parte do sprite
   ctx.drawImage(img, 0, 150, tela.width, tela.height, -((index * (speed / 2)) % tela.width) + tela.width, 0, tela.width, tela.height);
-  // background second part
+  // segunda parte do sprite
   ctx.drawImage(img, 0, 150, tela.width, tela.height, -(index * (speed / 2)) % tela.width, 0, tela.width, tela.height);
   
-  // trave display
+  // display da trave
   if (gamePlaying){
     traves.map(trave => {
       // movimento da trave
@@ -93,13 +102,28 @@ const render = () => {
       // baixo da trave
       ctx.drawImage(img, 432 + traveWidth, 108, traveWidth, tela.height - trave[1] + traveGap, trave[0], trave[1] + traveGap, traveWidth, tela.height - trave[1] + traveGap);
 
-      // Se tiver um ponto cria uma trave
+      // Se tiver um ponto cria uma trave e aumenta o score de uso
       if(trave[0] <= -traveWidth){
         currentScore++;
         ponto.play();
-
-        // Checar se é o maior score
-        bestScore = Math.max(bestScore, currentScore);
+        // Checar se é o maior score em cada dificuldade
+        switch (speed){
+          //facil
+          case 4.5:
+            bestScoreF = Math.max(bestScoreF, currentScore);
+            localStorage.setItem('bestScoreF', bestScoreF);
+            break;
+          //medio
+          case 6.2: 
+            bestScoreM = Math.max(bestScoreM, currentScore);
+            localStorage.setItem('bestScoreM', bestScoreM);
+            break;
+          //dificil
+          case 8.3:
+            bestScoreD = Math.max(bestScoreD, currentScore);
+            localStorage.setItem('bestScoreD', bestScoreD);
+            break;
+        }
         
         // Remover e criar nova trave
         traves = [...traves.slice(1), [traves[traves.length-1][0] + traveGap + traveWidth, traveLoc()]];
@@ -126,12 +150,16 @@ const render = () => {
     ctx.drawImage(img, 438, Math.floor((index % 9) / 3) * size[1], ...size, ((tela.width / 2) - size[0] / 2), flyHeight, ...size);
     flyHeight = (tela.height / 2) - (size[1] / 2);
       // Texto de explicação  
-    ctx.fillText('Clique para iniciar', 5, 100);
+    ctx.fillText('Clique para iniciar', 50, 100);
     ctx.font = "bold 30px courier";
   }
 
-  document.getElementById('bestScore').innerHTML = `Melhor: ${bestScore}`;
-  document.getElementById('currentScore').innerHTML = `Current: ${currentScore}`;
+  //Mostra o placar em cada dificuldade 
+  document.getElementById('bestScoreF').innerHTML = `Melhor facil: ${localStorage.getItem('bestScoreF')}`;
+  document.getElementById('bestScoreM').innerHTML = `Melhor médio: ${localStorage.getItem('bestScoreM')}`;
+  document.getElementById('bestScoreD').innerHTML = `Melhor dificil: ${localStorage.getItem('bestScoreD')}`;
+
+  document.getElementById('currentScore').innerHTML = `Gols no jogo: ${currentScore}`;
 
   // diz ao navegador para executar animação da bola
   window.requestAnimationFrame(render);

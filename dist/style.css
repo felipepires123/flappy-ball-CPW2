@@ -27,8 +27,8 @@ h1 {
   background-image: linear-gradient( to right, rgb(255, 255, 255),  rgb(190, 190, 190), rgb(255, 255, 255));
 }
 canvas{
-  margin-top: -43px;
-  margin-left: 23px;
+  margin-top: -40px;
+  margin-left: -67px;
   margin-bottom: 0px;
   border: solid black 3px;
   box-shadow: rgba(0, 0, 0, 0.534) 5px 5px 5px;
@@ -56,7 +56,7 @@ button{
 
 div#placar{
   bottom: 500px;
-  width: 180px;
+  width: 270px;
   background-color: rgba(0, 0, 0, 0.75);
   padding: 20px;
   border: solid black 3px;
