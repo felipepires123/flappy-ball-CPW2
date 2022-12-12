@@ -28,7 +28,7 @@ h1 {
 }
 canvas{
   margin-top: -40px;
-  margin-left: -67px;
+  margin-left: -77px;
   margin-bottom: 0px;
   border: solid black 3px;
   box-shadow: rgba(0, 0, 0, 0.534) 5px 5px 5px;
@@ -56,7 +56,7 @@ button{
 
 div#placar{
   bottom: 500px;
-  width: 270px;
+  width: 280px;
   background-color: rgba(0, 0, 0, 0.75);
   padding: 20px;
   border: solid black 3px;

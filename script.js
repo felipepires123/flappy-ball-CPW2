@@ -6,7 +6,7 @@ const ponto = new Audio();
 img.src = "/img/flappy-ball-set.png";
 fundo.src = "/sound/Som de torcida som de estadio efeito sonoro - Cheering sound stadium sound sound effect.mp3"
 ponto.src = "/sound/PONTO.mp3"
-
+//////////////////////////////////////
 //nivel de dificuldade
 function facil(){
   gravity = .4;
@@ -27,6 +27,7 @@ function dificil(){
   traveGap = 200;
 }
 
+//função para mutar o som da torcida
 function muteSom(){
   let buttomtxt = document.getElementById("som");
   
@@ -40,7 +41,7 @@ function muteSom(){
   
 }
 
-
+// carrega o jogo
 function load() {
 }
 
@@ -51,7 +52,7 @@ let speed = 6.2;
 const size = [36, 36];
 let jump = -11.5;
 const cTenth = (tela.width / 10);
-
+////////////////////////////////////////////////////
 // Melhor pontuação em cada dificuldade
 let bestScoreF = localStorage.getItem('bestScoreF'),
     bestScoreM = localStorage.getItem('bestScoreM'),
@@ -86,9 +87,9 @@ const render = () => {
 
   // ctx.clearRect(0, 0, tela.width, tela.);
 
-  // peimeira parte do sprite
+  // peimeira parte do sprite do fundo
   ctx.drawImage(img, 0, 150, tela.width, tela.height, -((index * (speed / 2)) % tela.width) + tela.width, 0, tela.width, tela.height);
-  // segunda parte do sprite
+  // segunda parte do sprite do fundo
   ctx.drawImage(img, 0, 150, tela.width, tela.height, -(index * (speed / 2)) % tela.width, 0, tela.width, tela.height);
   
   // display da trave
@@ -106,6 +107,8 @@ const render = () => {
       if(trave[0] <= -traveWidth){
         currentScore++;
         ponto.play();
+
+        /////////////////////////////////////////////////
         // Checar se é o maior score em cada dificuldade
         switch (speed){
           //facil
@@ -127,7 +130,7 @@ const render = () => {
         
         // Remover e criar nova trave
         traves = [...traves.slice(1), [traves[traves.length-1][0] + traveGap + traveWidth, traveLoc()]];
-        console.log(traves);
+        
       }
     
       // Se bater na trave perde
