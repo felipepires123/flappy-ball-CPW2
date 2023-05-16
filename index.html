@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+  <meta charset="UTF-8">
+  <title>Flappy Ball</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+
+  <div id="placar" onload="load()">
+    <h3>PLACAR</h3> 
+    <div id="bestScoreF"></div>
+    <div id="bestScoreM"></div>
+    <div id="bestScoreD"></div>
+    <div id="currentScore"></div>
+    
+  </div>
+  <div id="opcoes">
+    <h3>Dificuldade</h3>
+    <button onclick="facil()">FACIL</button>
+    <button onclick="medio()">MÉDIO</button>
+    <button onclick="dificil()">DIFICIL</button>
+    <button id="som" onclick="muteSom()">SOM: on</button>
+  </div>
+<!-- partial:index.partial.html -->
+<header>
+  <audio src="/sound/PONTO.mp3"></audio>
+  <h1>Flappy Ball</h1>
+  
+  
+</header>
+
+  <canvas id="tela" width="432" height="550"></canvas>
+  <script  src="./script.js"></script>
+
+
+
+</body>
+</html>

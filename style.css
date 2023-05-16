@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  padding: 10px;
+  text-align: center;
+  font-family: 'Press Start 2P', cursive;
+  user-select: none;
+  background: url(/img/background.png);
+  background-size: 40%;
+}
+header {
+  margin: 0 auto;
+  height: 110px;
+  width: 432px;
+}
+h1 {
+  left: -1.5px;
+  font-size: 20pt;
+  padding: 20px 0px;
+  position: relative;
+  margin-top: -17px;
+  border: solid black 3px;
+  width: 432px;
+  border-start-start-radius: 20px;
+  border-start-end-radius: 20px;
+  background-color: cornsilk;
+  background-image: linear-gradient( to right, rgb(255, 255, 255),  rgb(190, 190, 190), rgb(255, 255, 255));
+}
+canvas{
+  margin-top: -40px;
+  margin-left: -77px;
+  margin-bottom: 0px;
+  border: solid black 3px;
+  box-shadow: rgba(0, 0, 0, 0.534) 5px 5px 5px;
+  border-end-start-radius: 20px;
+  border-end-end-radius: 20px;
+}
+div#opcoes{
+  float: right;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 200px;
+  padding: 20px;
+  border: solid black 3px;
+  border-radius: 15px;
+  color: white;
+}
+button{
+  color: white;
+  background-color: rgba(0, 0, 0, 0.39);
+  border-radius: 10px;
+  border: solid rgba(255, 255, 255, 0.342) 2px;
+  width: 95px;
+  height: 30px;
+  margin: 5px 0px;
+}
+
+div#placar{
+  bottom: 500px;
+  width: 280px;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 20px;
+  border: solid black 3px;
+  border-radius: 15px;
+  float: left;
+  color: white;
+}
